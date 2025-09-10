@@ -2,32 +2,24 @@
 # accepts filepath as input and returns contents of file as a string
 
 def get_book_text(file_path):
-
     with open(file_path) as f:
-        file_contents = f.read()
-
-    return file_contents
+        return f.read()
 
 # get word count function
 # accepts text from book as a string and returns number of words in string
 
-def get_word_count(file_path):
+def get_word_count(text):
     
-    book_text = get_book_text(file_path)
-    words = book_text.split()
-    num_words = len(words)
-
-    return num_words
+    words_in_book = text.split()
+    return len(words_in_book)
 
 # get character count function
 # accepts text from book as a string and returns number of times each character (incl symbols and spaces) appears
 
-def get_character_count(file_path):
+def get_character_count(text):
     
     character_count = {}
-
-    book_text = get_book_text(file_path)
-    low_book_text = book_text.lower()
+    low_book_text = text.lower()
 
     for character in low_book_text:
 
@@ -39,8 +31,19 @@ def get_character_count(file_path):
     return character_count
 
 # sort character count function
-# accepts character dictionary and returns a sorted list (greatest to least) of character count
+# accepts character dictionary and returns a sorted list (greatest to least) of dictionaries
 
-def sort_character_count():
-    # blah
-    return
+def sort_key(e):
+    return e["num"]
+
+def sort_character_count(text):
+    
+    sorted_list = []
+    character_dictionary = get_character_count(text)
+
+    for character in character_dictionary:
+        sorted_list.append({"char": character, "num": character_dictionary[character]})
+        sorted_list.sort(reverse=True, key=sort_key)
+    return sorted_list
+
+

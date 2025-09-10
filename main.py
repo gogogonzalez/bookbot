@@ -1,19 +1,44 @@
-from stats import get_word_count, get_character_count
+from stats import get_book_text, get_word_count, get_character_count, sort_character_count
 
 # main function
 
 def main():
     
-    # 1st test
-    # used get_book_text in conjunction with relative path to file to print the contents of book to console
-    # book = get_book_text("books/frankenstein.txt")
-    # print(book)
+    # TDL: add get text function to main,
+    # clean up with clearer explanations
 
-    num_word = get_word_count("books/frankenstein.txt")
-    print(f"{num_word} words found in the document.")
+    file_path = "books/frankenstein.txt"
+    book_text = get_book_text(file_path)
+    num_words = get_word_count(book_text)
+    num_characters = get_character_count(book_text)
+    sorted_character_count = sort_character_count(book_text)
 
-    num_character = get_character_count("books/frankenstein.txt") 
-    print(num_character)
+    print_report(file_path, num_words, sorted_character_count)
+    
+
+    
+# print report function
+# it'll make things look nice :)
+
+def print_report(file_path, num_words, sorted_character_count):
+      print("============ BOOKBOT ============", 
+            f"\nAnalyzing book found at {file_path}...")
+      
+      print("----------- Word Count ----------", 
+            f"\nFound {num_words} total words")
+        
+      print("--------- Character Count -------")
+
+      for item in sorted_character_count:
+            if not item["char"].isalpha():
+                 continue
+            print(f"{item['char']}: {item['num']}")  
+      
+      print("============= END ===============")
+
+
+
+
 
 # call main to execute program
 
