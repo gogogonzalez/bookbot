@@ -1,27 +1,21 @@
-# get book text function
-# accepts filepath as input and returns contents of file as a string
-
-def get_book_text(file_path):
-    with open(file_path) as f:
-        return f.read()
-
-# get word count function
-# accepts text from book as a string and returns number of words in string
+# Get Word Count
+# Input book text as one string and return number of words in string
 
 def get_word_count(text):
     
     words_in_book = text.split()
     return len(words_in_book)
 
-# get character count function
-# accepts text from book as a string and returns number of times each character (incl symbols and spaces) appears
+
+# Get Character Count
+# Input book text as one string and return number count of each character (incl symbols and spaces) as dict
 
 def get_character_count(text):
     
     character_count = {}
-    low_book_text = text.lower()
+    lowercase_text = text.lower()
 
-    for character in low_book_text:
+    for character in lowercase_text:
 
         if character in character_count:
             character_count[character] += 1
@@ -30,20 +24,21 @@ def get_character_count(text):
 
     return character_count
 
-# sort character count function
-# accepts character dictionary and returns a sorted list (greatest to least) of dictionaries
+
+# Sort Character Count feat .sort() key
+# Input character count dict and return character count in a list of descending ordering
 
 def sort_key(e):
     return e["num"]
 
-def sort_character_count(text):
+def sort_character_count(character_dict):
     
     sorted_list = []
-    character_dictionary = get_character_count(text)
 
-    for character in character_dictionary:
-        sorted_list.append({"char": character, "num": character_dictionary[character]})
+    for character in character_dict:
+        sorted_list.append({"char": character, "num": character_dict[character]})
         sorted_list.sort(reverse=True, key=sort_key)
+
     return sorted_list
 
 
