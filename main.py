@@ -44,8 +44,10 @@ def print_report(file_path, num_words, sorted_character_count):
       print("--------- Character Count -------")
 
       for item in sorted_character_count:
+
             if not item["char"].isalpha():
                  continue
+            
             print(f"{item['char']}: {item['num']}")  
       
       print("============= END ===============")
